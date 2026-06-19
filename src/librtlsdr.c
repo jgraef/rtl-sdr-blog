@@ -1199,9 +1199,16 @@ int rtlsdr_set_agc_mode(rtlsdr_dev_t *dev, int on)
 
 int rtlsdr_set_direct_sampling(rtlsdr_dev_t *dev, int on)
 {
-	/* When the UI sets the ds mode, remember the mode set */
-	dev->direct_sampling_mode = (enum rtlsdr_ds_mode)on;
-	return _rtlsdr_set_direct_sampling(dev, on);
+	enum rtlsdr_ds_mode new_mode = (enum rtlsdr_ds_mode)on;
+
+	if (new_mode != dev->direct_sampling_mode) {
+		/* When the UI sets the ds mode, remember the mode set */
+		dev->direct_sampling_mode = new_mode;
+		return _rtlsdr_set_direct_sampling(dev, on);
+	}
+	else {
+		return 0;
+	}
 }
 
 int _rtlsdr_set_direct_sampling(rtlsdr_dev_t *dev, int on)
