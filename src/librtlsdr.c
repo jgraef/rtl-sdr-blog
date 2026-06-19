@@ -1290,6 +1290,8 @@ int rtlsdr_set_offset_tuning(rtlsdr_dev_t *dev, int on)
 	if (!dev)
 		return -1;
 
+	// this is such a bad idea
+	#if 0
 	if ((dev->tuner_type == RTLSDR_TUNER_R820T) ||
 	    (dev->tuner_type == RTLSDR_TUNER_R828D)) {
 		/* RTL-SDR-BLOG Hack, enables us to turn on the bias tee by
@@ -1300,6 +1302,7 @@ int rtlsdr_set_offset_tuning(rtlsdr_dev_t *dev, int on)
 		rtlsdr_set_bias_tee(dev, on);
 		return -2;
 	}
+	#endif
 
 	if (dev->direct_sampling)
 		return -3;
