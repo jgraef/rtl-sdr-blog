@@ -1514,6 +1514,8 @@ int rtlsdr_open(rtlsdr_dev_t **out_dev, uint32_t index)
 	ssize_t cnt;
 	uint8_t buf[EEPROM_SIZE];
 
+	fprintf(stderr, "switch's patch\n");
+
 	dev = malloc(sizeof(rtlsdr_dev_t));
 	if (NULL == dev)
 		return -ENOMEM;
